@@ -10,7 +10,7 @@ class StandingOrder {
     @Column(name = "id", nullable = false)
     var id: UUID = UUID.randomUUID()
 
-    @Column()
+    @Column
     @Enumerated(EnumType.STRING)
     var type: StandingOrderType = StandingOrderType.BUY
 }

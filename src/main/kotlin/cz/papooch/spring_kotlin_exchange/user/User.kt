@@ -10,15 +10,22 @@ import javax.persistence.*
         Index(name = "unique_token", columnList = "token", unique = true)
     ]
 )
-class User(
-    @Column(nullable = false)
-    val name: String
-) {
+class User() {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
+    @Access(AccessType.PROPERTY)
     var id: Int = 0
 
     @Column(nullable = false)
+    var name: String = ""
+
+    @Column(nullable = false)
     var token: String = ""
+
+    constructor(name: String, token: String = ""): this() {
+        this.name = name
+        this.token = token
+    }
+
 }

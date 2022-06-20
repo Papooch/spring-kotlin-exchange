@@ -8,19 +8,23 @@ import javax.persistence.*
 @Table(
     name = "balances"
 )
-class Balance(
+class Balance() {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    var id: Int,
+    var id: Int = 0
 
     @Column()
-    var USD: BigDecimal = BigDecimal.ZERO,
+    var USD: BigDecimal = BigDecimal.ZERO
 
     @Column()
     var BTC: BigDecimal = BigDecimal.ZERO
-) {
+
     @OneToOne()
     @JoinColumn(foreignKey = ForeignKey(name = "fk_balance_user_id"))
     var user: User? = null
+
+    constructor(user: User): this() {
+        this.user = user
+    }
 }
